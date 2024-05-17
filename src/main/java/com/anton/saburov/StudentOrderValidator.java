@@ -6,28 +6,42 @@ public class StudentOrderValidator {
     }
 
     static void checkAll() {
-        StudentOrder studentOrder = readStudentOrder();
 
-        AnswerCityRegister cityAnswer = checkCityRegister(studentOrder);
-        AnswerWedding answerWedding = checkWedding(studentOrder);
-        AnswerChildren answerChildren = checkChildren(studentOrder);
-        AnswerStudent answerStudent = checkStudent(studentOrder);
+        while (true) {
+            StudentOrder studentOrder = readStudentOrder();
+            System.out.println("Start");
 
-        sendMail(studentOrder);
+            if (studentOrder == null) {
+                break;
+            }
+            System.out.println("Finish");
+            AnswerCityRegister cityAnswer = checkCityRegister(studentOrder);
+            if (!cityAnswer.success) {
+                continue;
+            }
+            AnswerWedding answerWedding = checkWedding(studentOrder);
+            AnswerChildren answerChildren = checkChildren(studentOrder);
+            AnswerStudent answerStudent = checkStudent(studentOrder);
+
+            sendMail(studentOrder);
+        }
+        System.out.println("Finish 2");
+
     }
 
     private static void sendMail(StudentOrder studentOrder) {
-
+        System.out.println("Почта отправлена");
     }
 
     static StudentOrder readStudentOrder() {
         StudentOrder studentOrder = new StudentOrder();
-        return studentOrder;
+        return null;
     }
 
     static AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
         System.out.println("CityRegister is Running");
         AnswerCityRegister answerCityRegister = new AnswerCityRegister();
+        answerCityRegister.success = false;
         return answerCityRegister;
     }
 
