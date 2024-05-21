@@ -9,15 +9,16 @@ public class StudentOrderValidator {
 
         while (true) {
             StudentOrder studentOrder = readStudentOrder();
-            System.out.println("Start");
+//            System.out.println("Start");
 
             if (studentOrder == null) {
                 break;
             }
-            System.out.println("Finish");
+//            System.out.println("Finish");
             AnswerCityRegister cityAnswer = checkCityRegister(studentOrder);
             if (!cityAnswer.success) {
-                continue;
+//                continue;
+                break;
             }
             AnswerWedding answerWedding = checkWedding(studentOrder);
             AnswerChildren answerChildren = checkChildren(studentOrder);
@@ -25,7 +26,7 @@ public class StudentOrderValidator {
 
             sendMail(studentOrder);
         }
-        System.out.println("Finish 2");
+//        System.out.println("Finish 2");
 
     }
 
@@ -35,14 +36,21 @@ public class StudentOrderValidator {
 
     static StudentOrder readStudentOrder() {
         StudentOrder studentOrder = new StudentOrder();
-        return null;
+        return studentOrder;
     }
 
     static AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
-        System.out.println("CityRegister is Running");
-        AnswerCityRegister answerCityRegister = new AnswerCityRegister();
-        answerCityRegister.success = false;
-        return answerCityRegister;
+        CityRegisterValidator crv1 = new CityRegisterValidator();
+        crv1.hostName = "Host1";
+        crv1.login = "login1";
+        crv1.password = "password1";
+        CityRegisterValidator crv2 = new CityRegisterValidator();
+        crv2.hostName = "Host2";
+        crv2.login = "login2";
+        crv2.password = "password2";
+        AnswerCityRegister ans1 = crv1.checkCityRegister(studentOrder);
+        AnswerCityRegister ans2 = crv2.checkCityRegister(studentOrder);
+        return ans1;
     }
 
     static AnswerWedding checkWedding(StudentOrder studentOrder) {
