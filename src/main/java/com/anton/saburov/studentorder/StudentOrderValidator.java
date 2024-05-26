@@ -1,4 +1,10 @@
-package com.anton.saburov;
+package com.anton.saburov.studentorder;
+import com.anton.saburov.domain.*;
+import com.anton.saburov.mail.MailSender;
+import com.anton.saburov.validator.ChildrenValidator;
+import com.anton.saburov.validator.CityRegisterValidator;
+import com.anton.saburov.validator.StudentValidator;
+import com.anton.saburov.validator.WeddingValidator;
 
 public class StudentOrderValidator {
     public static void main(String[] args) {
@@ -30,9 +36,7 @@ public class StudentOrderValidator {
 
     }
 
-    private static void sendMail(StudentOrder studentOrder) {
-        System.out.println("Почта отправлена");
-    }
+
 
     static StudentOrder readStudentOrder() {
         StudentOrder studentOrder = new StudentOrder();
@@ -54,18 +58,21 @@ public class StudentOrderValidator {
     }
 
     static AnswerWedding checkWedding(StudentOrder studentOrder) {
-        System.out.println("Wedding is start");
-        AnswerWedding answerWedding = new AnswerWedding();
-        return answerWedding;
+        WeddingValidator weddingValidator = new WeddingValidator();
+        return weddingValidator.checkWedding(studentOrder);
     }
 
     static AnswerChildren checkChildren(StudentOrder studentOrder) {
-        System.out.println("Children  Check is running");
-        return new AnswerChildren();
+        ChildrenValidator childrenValidator = new ChildrenValidator();
+        return childrenValidator.checkChildren(studentOrder);
     }
 
     static AnswerStudent checkStudent(StudentOrder studentOrder) {
-        System.out.println("Студенты проверяются");
-        return new AnswerStudent();
+        StudentValidator studentValidator = new StudentValidator();
+        return studentValidator.checkStudent(studentOrder);
+    }
+
+    private static void sendMail(StudentOrder studentOrder) {
+        new MailSender().sendMail(studentOrder);
     }
 }

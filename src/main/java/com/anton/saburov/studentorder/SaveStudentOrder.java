@@ -1,4 +1,6 @@
-package com.anton.saburov;
+package com.anton.saburov.studentorder;
+
+import com.anton.saburov.domain.StudentOrder;
 
 public class SaveStudentOrder {
     public static void main(String[] args) {
