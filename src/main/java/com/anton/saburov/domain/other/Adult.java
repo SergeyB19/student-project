@@ -1,4 +1,6 @@
-package com.anton.saburov.domain;
+package com.anton.saburov.domain.other;
+
+import com.anton.saburov.domain.Person;
 
 import java.time.LocalDate;
 
@@ -10,6 +12,10 @@ public class Adult extends Person {
     private String university;
     private String studentId;
 
+
+    public String getPersonString() {
+        return surName + " " + givenName + ":" + passportNumber;
+    }
     public String getPassportSeria() {
         return passportSeria;
     }

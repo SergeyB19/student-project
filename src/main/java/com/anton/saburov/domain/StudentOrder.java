@@ -1,5 +1,7 @@
 package com.anton.saburov.domain;
 
+import com.anton.saburov.domain.other.Adult;
+
 public class StudentOrder {
     private long studentOrderId;
     private Adult husband;
