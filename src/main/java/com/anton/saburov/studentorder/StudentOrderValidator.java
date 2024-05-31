@@ -1,4 +1,5 @@
 package com.anton.saburov.studentorder;
+
 import com.anton.saburov.domain.*;
 import com.anton.saburov.mail.MailSender;
 import com.anton.saburov.validator.ChildrenValidator;
@@ -7,11 +8,29 @@ import com.anton.saburov.validator.StudentValidator;
 import com.anton.saburov.validator.WeddingValidator;
 
 public class StudentOrderValidator {
-    public static void main(String[] args) {
-        checkAll();
+
+    private CityRegisterValidator cityRegisterValidator;
+    private WeddingValidator weddingValidator;
+    private ChildrenValidator childrenValidator;
+    private StudentValidator studentValidator;
+    private MailSender mailSender;
+
+
+    public StudentOrderValidator() {
+        cityRegisterValidator = new CityRegisterValidator();
+        weddingValidator = new WeddingValidator();
+        childrenValidator = new ChildrenValidator();
+        studentValidator = new StudentValidator();
+        mailSender = new MailSender();
     }
 
-    static void checkAll() {
+
+    public static void main(String[] args) {
+        StudentOrderValidator studentOrderValidator = new StudentOrderValidator();
+        studentOrderValidator.checkAll();
+    }
+
+    public void checkAll() {
 
         while (true) {
             StudentOrder studentOrder = readStudentOrder();
@@ -37,14 +56,13 @@ public class StudentOrderValidator {
     }
 
 
-
-    static StudentOrder readStudentOrder() {
+    public StudentOrder readStudentOrder() {
         StudentOrder studentOrder = new StudentOrder();
         return studentOrder;
     }
 
-    static AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
-        CityRegisterValidator crv1 = new CityRegisterValidator();
+    public AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
+        /*CityRegisterValidator crv1 = new CityRegisterValidator();
         crv1.hostName = "Host1";
         crv1.login = "login1";
         crv1.password = "password1";
@@ -53,26 +71,23 @@ public class StudentOrderValidator {
         crv2.login = "login2";
         crv2.password = "password2";
         AnswerCityRegister ans1 = crv1.checkCityRegister(studentOrder);
-        AnswerCityRegister ans2 = crv2.checkCityRegister(studentOrder);
-        return ans1;
+        AnswerCityRegister ans2 = crv2.checkCityRegister(studentOrder);*/
+        return cityRegisterValidator.checkCityRegister(studentOrder);
     }
 
-    static AnswerWedding checkWedding(StudentOrder studentOrder) {
-        WeddingValidator weddingValidator = new WeddingValidator();
+    public AnswerWedding checkWedding(StudentOrder studentOrder) {
         return weddingValidator.checkWedding(studentOrder);
     }
 
-    static AnswerChildren checkChildren(StudentOrder studentOrder) {
-        ChildrenValidator childrenValidator = new ChildrenValidator();
+    public AnswerChildren checkChildren(StudentOrder studentOrder) {
         return childrenValidator.checkChildren(studentOrder);
     }
 
-    static AnswerStudent checkStudent(StudentOrder studentOrder) {
-        StudentValidator studentValidator = new StudentValidator();
+    public AnswerStudent checkStudent(StudentOrder studentOrder) {
         return studentValidator.checkStudent(studentOrder);
     }
 
-    private static void sendMail(StudentOrder studentOrder) {
-        new MailSender().sendMail(studentOrder);
+    public void sendMail(StudentOrder studentOrder) {
+        mailSender.sendMail(studentOrder);
     }
 }
