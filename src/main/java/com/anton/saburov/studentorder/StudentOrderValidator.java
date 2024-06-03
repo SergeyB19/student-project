@@ -31,36 +31,37 @@ public class StudentOrderValidator {
     }
 
     public void checkAll() {
-
-        while (true) {
-            StudentOrder studentOrder = readStudentOrder();
-//            System.out.println("Start");
-
-            if (studentOrder == null) {
-                break;
-            }
-//            System.out.println("Finish");
-            AnswerCityRegister cityAnswer = checkCityRegister(studentOrder);
-            if (!cityAnswer.success) {
-//                continue;
-                break;
-            }
-            AnswerWedding answerWedding = checkWedding(studentOrder);
-            AnswerChildren answerChildren = checkChildren(studentOrder);
-            AnswerStudent answerStudent = checkStudent(studentOrder);
-
-            sendMail(studentOrder);
+        StudentOrder[] studentOrderArray = readStudentOrders();
+        for (int c = 0; c < studentOrderArray.length; c++) {
+            System.out.println();
+            checkOneOrder(studentOrderArray[c]);
         }
-//        System.out.println("Finish 2");
+
+      /*  for (StudentOrder studentOrder : studentOrderArray) {
+            System.out.println();
+            checkOneOrder(studentOrder);
+        }*/
 
     }
 
-
-    public StudentOrder readStudentOrder() {
-        SaveStudentOrder.buildStudentOrder();
-        StudentOrder studentOrder = new StudentOrder();
-        return studentOrder;
+    public StudentOrder[] readStudentOrders() {
+        StudentOrder[] studentOrdersArray = new StudentOrder[5];
+        for (int c = 0; c < studentOrdersArray.length; c++) {
+            studentOrdersArray[c] = SaveStudentOrder.buildStudentOrder(c);
+        }
+        /*StudentOrder studentOrder = new StudentOrder();
+        return studentOrder;*/
+        return studentOrdersArray;
     }
+
+    public void checkOneOrder(StudentOrder studentOrder) {
+        AnswerCityRegister cityAnswer = checkCityRegister(studentOrder);
+        AnswerWedding answerWedding = checkWedding(studentOrder);
+        AnswerChildren answerChildren = checkChildren(studentOrder);
+        AnswerStudent answerStudent = checkStudent(studentOrder);
+        sendMail(studentOrder);
+    }
+
 
     public AnswerCityRegister checkCityRegister(StudentOrder studentOrder) {
         /*CityRegisterValidator crv1 = new CityRegisterValidator();
