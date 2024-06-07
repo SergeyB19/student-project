@@ -4,10 +4,10 @@ import com.anton.saburov.domain.Person;
 import com.anton.saburov.domain.other.Adult;
 import com.anton.saburov.domain.StudentOrder;
 
-public  class SaveStudentOrder {
+public class SaveStudentOrder {
     public static void main(String[] args) {
         StudentOrder so = new StudentOrder();
-//        buildStudentOrder();
+        buildStudentOrder(10);
         long ans = saveStudentOrder(so);
         System.out.println(ans);
 
@@ -25,17 +25,13 @@ public  class SaveStudentOrder {
     public static StudentOrder buildStudentOrder(long id) {
         StudentOrder so = new StudentOrder();
         so.setStudentOrderId(id);
-        Adult husband = new Adult("surName","givenName","patronymic",null);
-
-/*
-        System.out.println(husband.getSurName());
-        husband.setGivenName("husbandName");
-        husband.setSurName("husbandSurName");
-        husband.setPassportNumber("123456");
-        so.setHusband(husband);
-
-        String ans = husband.getPersonString();
-        System.out.println(ans);*/
+        StudentOrder so1 = so;
+        printStudentOrder(so1);
+        Adult husband = new Adult("surName", "givenName", "patronymic", null);
         return so;
+    }
+
+    static void printStudentOrder(StudentOrder studentOrder) {
+        System.out.println(studentOrder.getStudentOrderId());
     }
 }
