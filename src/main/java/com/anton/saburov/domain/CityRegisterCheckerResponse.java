@@ -2,7 +2,7 @@ package com.anton.saburov.domain;
 
 public class CityRegisterCheckerResponse {
     private boolean existing;
-    private Boolean temporal = null;
+    private Boolean temporal;
 
     public boolean isExisting() {
         return existing;
