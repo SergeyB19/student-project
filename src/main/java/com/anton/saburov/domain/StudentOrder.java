@@ -2,6 +2,8 @@ package com.anton.saburov.domain;
 
 import com.anton.saburov.domain.other.Adult;
 
+import java.time.LocalDate;
+
 public class StudentOrder {
     private long studentOrderId;
     private Adult husband;
@@ -38,5 +40,15 @@ public class StudentOrder {
 
     public void setChild(Child child) {
         this.child = child;
+    }
+
+    public void setMarriageCertificateId(String s) {
+    }
+
+    public void setMarriageDate(LocalDate localDate) {
+    }
+
+    public void setMarriageOffice(String s) {
+
     }
 }

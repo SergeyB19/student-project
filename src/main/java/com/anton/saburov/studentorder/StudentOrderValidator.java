@@ -1,5 +1,4 @@
 package com.anton.saburov.studentorder;
-
 import com.anton.saburov.domain.*;
 import com.anton.saburov.mail.MailSender;
 import com.anton.saburov.validator.ChildrenValidator;
@@ -45,7 +44,7 @@ public class StudentOrderValidator {
     }
 
     public StudentOrder[] readStudentOrders() {
-        StudentOrder[] studentOrdersArray = new StudentOrder[5];
+        StudentOrder[] studentOrdersArray = new StudentOrder[3];
         for (int c = 0; c < studentOrdersArray.length; c++) {
             studentOrdersArray[c] = SaveStudentOrder.buildStudentOrder(c);
         }
@@ -56,10 +55,10 @@ public class StudentOrderValidator {
 
     public void checkOneOrder(StudentOrder studentOrder) {
         AnswerCityRegister cityAnswer = checkCityRegister(studentOrder);
-        AnswerWedding answerWedding = checkWedding(studentOrder);
+   /*     AnswerWedding answerWedding = checkWedding(studentOrder);
         AnswerChildren answerChildren = checkChildren(studentOrder);
         AnswerStudent answerStudent = checkStudent(studentOrder);
-        sendMail(studentOrder);
+        sendMail(studentOrder);*/
     }
 
 

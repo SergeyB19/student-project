@@ -7,6 +7,10 @@ public class Address {
     private String apartment;
     private String postCode;
 
+    public Address(String number, String s, String number1, String s1, String number2) {
+
+    }
+
     public String getStreet() {
         return street;
     }

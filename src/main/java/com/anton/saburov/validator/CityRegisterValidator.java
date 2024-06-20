@@ -25,11 +25,11 @@ public class CityRegisterValidator {
             CityRegisterCheckerResponse wans = personChecker.checkPerson(studentOrder.getWife());
             CityRegisterCheckerResponse cans = personChecker.checkPerson(studentOrder.getChild());
         } catch (CityRegisterException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(System.out);
         }
 
 
-        System.out.println("CityRegister is Running: " + hostName + "," + login + "," + password);
+//        System.out.println("CityRegister is Running: " + hostName + "," + login + "," + password);
         AnswerCityRegister answerCityRegister = new AnswerCityRegister();
         return answerCityRegister;
     }
