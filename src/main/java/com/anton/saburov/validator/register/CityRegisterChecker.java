@@ -1,4 +1,4 @@
-package com.anton.saburov.validator;
+package com.anton.saburov.validator.register;
 
 import com.anton.saburov.domain.CityRegisterCheckerResponse;
 import com.anton.saburov.domain.Person;
