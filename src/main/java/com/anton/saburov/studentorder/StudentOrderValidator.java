@@ -6,6 +6,9 @@ import com.anton.saburov.validator.CityRegisterValidator;
 import com.anton.saburov.validator.StudentValidator;
 import com.anton.saburov.validator.WeddingValidator;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class StudentOrderValidator {
 
     private CityRegisterValidator cityRegisterValidator;
@@ -30,27 +33,24 @@ public class StudentOrderValidator {
     }
 
     public void checkAll() {
-        StudentOrder[] studentOrderArray = readStudentOrders();
-        for (int c = 0; c < studentOrderArray.length; c++) {
+        List<StudentOrder> soList = readStudentOrders();
+
+        for (StudentOrder so : soList) {
             System.out.println();
-            checkOneOrder(studentOrderArray[c]);
+            checkOneOrder(so);
         }
-
-      /*  for (StudentOrder studentOrder : studentOrderArray) {
-            System.out.println();
-            checkOneOrder(studentOrder);
-        }*/
-
     }
 
-    public StudentOrder[] readStudentOrders() {
-        StudentOrder[] studentOrdersArray = new StudentOrder[3];
-        for (int c = 0; c < studentOrdersArray.length; c++) {
-            studentOrdersArray[c] = SaveStudentOrder.buildStudentOrder(c);
+    public List<StudentOrder> readStudentOrders() {
+        List<StudentOrder> soList = new LinkedList<>();
+
+        for (int c = 0; c < 5; c++) {
+            StudentOrder so = SaveStudentOrder.buildStudentOrder(c);
+            soList.add(so);
         }
         /*StudentOrder studentOrder = new StudentOrder();
         return studentOrder;*/
-        return studentOrdersArray;
+        return soList;
     }
 
     public void checkOneOrder(StudentOrder studentOrder) {
