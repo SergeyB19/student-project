@@ -1,7 +1,7 @@
 package com.anton.saburov.validator.register;
 
 import com.anton.saburov.domain.Child;
-import com.anton.saburov.domain.CityRegisterCheckerResponse;
+import com.anton.saburov.domain.CityRegisterResponse;
 import com.anton.saburov.domain.Person;
 import com.anton.saburov.domain.other.Adult;
 import com.anton.saburov.exception.CityRegisterException;
@@ -15,8 +15,8 @@ public class FakeCityRegisterChecker implements CityRegisterChecker {
     private static final String ERROR_1 = "1002";
     private static final String ERROR_2 = "2002";
 
-    public CityRegisterCheckerResponse checkPerson(Person person) throws CityRegisterException {
-        CityRegisterCheckerResponse res = new CityRegisterCheckerResponse();
+    public CityRegisterResponse checkPerson(Person person) throws CityRegisterException {
+        CityRegisterResponse res = new CityRegisterResponse();
         if (person instanceof Adult) {
             Adult t = (Adult) person;
             String ps = t.getPassportSeria();
