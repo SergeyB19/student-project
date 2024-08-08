@@ -6,17 +6,32 @@ import com.anton.saburov.domain.Person;
 import com.anton.saburov.domain.other.Adult;
 import com.anton.saburov.domain.StudentOrder;
 
+import java.sql.*;
 import java.time.LocalDate;
 
 public class SaveStudentOrder {
-    public static void main(String[] args) {
-        StudentOrder so = new StudentOrder();
-        buildStudentOrder(10);
-        long ans = saveStudentOrder(so);
-        System.out.println(ans);
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        Class.forName("org.postgresql.Driver");
+
+        Connection con = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/jc_student",
+                "postgres",
+                "postgres"
+        );
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM jc_street");
+        while (rs.next()) {
+            System.out.println(rs.getLong(1) + " : " + rs.getString(2));
+        }
 
 
-        System.out.println("SaveStudentOrder is running");
+//        StudentOrder so = new StudentOrder();
+//        buildStudentOrder(10);
+//        long ans = saveStudentOrder(so);
+//        System.out.println(ans);
+
+
+//        System.out.println("SaveStudentOrder is running");
     }
 
     static long saveStudentOrder(StudentOrder studentOrder) {
