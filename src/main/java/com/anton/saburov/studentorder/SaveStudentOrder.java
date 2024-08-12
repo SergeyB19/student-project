@@ -1,10 +1,7 @@
 package com.anton.saburov.studentorder;
 
-import com.anton.saburov.domain.Address;
-import com.anton.saburov.domain.Child;
-import com.anton.saburov.domain.Person;
+import com.anton.saburov.domain.*;
 import com.anton.saburov.domain.other.Adult;
-import com.anton.saburov.domain.StudentOrder;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -12,17 +9,6 @@ import java.time.LocalDate;
 public class SaveStudentOrder {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
-
-        Connection con = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/jc_student",
-                "postgres",
-                "postgres"
-        );
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM jc_street");
-        while (rs.next()) {
-            System.out.println(rs.getLong(1) + " : " + rs.getString(2));
-        }
 
 
 //        StudentOrder so = new StudentOrder();
@@ -47,7 +33,9 @@ public class SaveStudentOrder {
         so.setMarriageCertificateId("" + (123456000 + id));
         so.setMarriageDate(LocalDate.of(2016, 7, 4));
         so.setMarriageOffice("Отдел ЗАГС");
-        Address address = new Address("195000", "Заневский пр.", "12", "", "142");
+
+        Street street = new Street(1L, "First street");
+        Address address = new Address("195000", street, "12", "Заневский пр.", "142");
 
 
         Adult husband = new Adult("Петров", "Виктор", "Сергеевич", LocalDate.of(1997, 8, 24));

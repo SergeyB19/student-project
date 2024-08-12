@@ -1,21 +1,25 @@
 package com.anton.saburov.domain;
 
 public class Address {
-    private String street;
+    private String postCode;
+    private Street street;
     private String building;
     private String extension;
     private String apartment;
-    private String postCode;
 
-    public Address(String number, String s, String number1, String s1, String number2) {
-
+    public Address(String postCode, Street street, String building, String extension, String apartment) {
+        this.postCode = postCode;
+        this.street = street;
+        this.building = building;
+        this.extension = extension;
+        this.apartment = apartment;
     }
 
-    public String getStreet() {
+    public Street getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
+    public void setStreet(Street street) {
         this.street = street;
     }
 
