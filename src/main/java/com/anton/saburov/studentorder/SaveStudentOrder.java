@@ -1,14 +1,21 @@
 package com.anton.saburov.studentorder;
 
+import com.anton.saburov.dao.DictionaryDaoImpl;
 import com.anton.saburov.domain.*;
 import com.anton.saburov.domain.other.Adult;
+import com.anton.saburov.exception.DaoException;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.List;
 
 public class SaveStudentOrder {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, DaoException {
         Class.forName("org.postgresql.Driver");
+        List<Street> d = new DictionaryDaoImpl().findStreets("sec");
+        for (Street s : d) {
+            System.out.println(s.getStreetName());
+        }
 
 
 //        StudentOrder so = new StudentOrder();
