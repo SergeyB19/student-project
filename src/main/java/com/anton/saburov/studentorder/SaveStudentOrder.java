@@ -12,18 +12,15 @@ import java.util.List;
 public class SaveStudentOrder {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, DaoException {
         Class.forName("org.postgresql.Driver");
-        List<Street> d = new DictionaryDaoImpl().findStreets("sec");
+        List<Street> d = new DictionaryDaoImpl().findStreets("d");
         for (Street s : d) {
             System.out.println(s.getStreetName());
         }
-
 
 //        StudentOrder so = new StudentOrder();
 //        buildStudentOrder(10);
 //        long ans = saveStudentOrder(so);
 //        System.out.println(ans);
-
-
 //        System.out.println("SaveStudentOrder is running");
     }
 
