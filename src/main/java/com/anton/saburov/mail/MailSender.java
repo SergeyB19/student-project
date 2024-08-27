@@ -1,6 +1,6 @@
 package com.anton.saburov.mail;
 
-import com.anton.saburov.domain.StudentOrder;
+import com.anton.saburov.domain.wedding.StudentOrder;
 
 public class MailSender {
     public void sendMail(StudentOrder studentOrder) {

@@ -1,5 +1,6 @@
 package com.anton.saburov.studentorder;
 import com.anton.saburov.domain.*;
+import com.anton.saburov.domain.wedding.StudentOrder;
 import com.anton.saburov.mail.MailSender;
 import com.anton.saburov.validator.ChildrenValidator;
 import com.anton.saburov.validator.CityRegisterValidator;

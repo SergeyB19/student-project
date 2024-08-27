@@ -1,10 +1,9 @@
-package com.anton.saburov.domain;
+package com.anton.saburov.domain.wedding;
 
-import com.anton.saburov.domain.other.Adult;
+import com.anton.saburov.domain.RegisterOffice;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class StudentOrder {
@@ -13,7 +12,7 @@ public class StudentOrder {
     private Adult wife;
     private List<Child> children;
     private String marriageCertificateId;
-    private String marriageOffice;
+    private RegisterOffice marriageOffice;
     private LocalDate marriageDate;
 
     public long getStudentOrderId() {
@@ -63,5 +62,21 @@ public class StudentOrder {
 
     public void setMarriageOffice(String s) {
 
+    }
+
+    public String getMarriageCertificateId() {
+        return marriageCertificateId;
+    }
+
+    public RegisterOffice getMarriageOffice() {
+        return marriageOffice;
+    }
+
+    public void setMarriageOffice(RegisterOffice marriageOffice) {
+        this.marriageOffice = marriageOffice;
+    }
+
+    public LocalDate getMarriageDate() {
+        return marriageDate;
     }
 }

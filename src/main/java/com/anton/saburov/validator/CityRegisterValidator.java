@@ -1,13 +1,14 @@
 package com.anton.saburov.validator;
 
 import com.anton.saburov.domain.*;
+import com.anton.saburov.domain.wedding.Child;
+import com.anton.saburov.domain.wedding.Person;
+import com.anton.saburov.domain.wedding.StudentOrder;
 import com.anton.saburov.exception.CityRegisterException;
 import com.anton.saburov.exception.TransportException;
 import com.anton.saburov.validator.register.AnswerCityRegisterItem;
 import com.anton.saburov.validator.register.CityRegisterChecker;
 import com.anton.saburov.validator.register.FakeCityRegisterChecker;
-
-import java.util.List;
 
 public class CityRegisterValidator {
 

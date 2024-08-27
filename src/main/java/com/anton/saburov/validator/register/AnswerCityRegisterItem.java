@@ -1,9 +1,6 @@
 package com.anton.saburov.validator.register;
 
-import com.anton.saburov.domain.Person;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.anton.saburov.domain.wedding.Person;
 
 public class AnswerCityRegisterItem {
 

@@ -1,7 +1,7 @@
 package com.anton.saburov.validator;
 
 import com.anton.saburov.domain.AnswerWedding;
-import com.anton.saburov.domain.StudentOrder;
+import com.anton.saburov.domain.wedding.StudentOrder;
 
 public class WeddingValidator {
     public AnswerWedding checkWedding(StudentOrder studentOrder) {

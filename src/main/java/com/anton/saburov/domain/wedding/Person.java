@@ -1,4 +1,4 @@
-package com.anton.saburov.domain;
+package com.anton.saburov.domain.wedding;
 
 import java.time.LocalDate;
 

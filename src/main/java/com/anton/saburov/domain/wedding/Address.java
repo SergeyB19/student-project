@@ -1,4 +1,4 @@
-package com.anton.saburov.domain;
+package com.anton.saburov.domain.wedding;
 
 public class Address {
     private String postCode;

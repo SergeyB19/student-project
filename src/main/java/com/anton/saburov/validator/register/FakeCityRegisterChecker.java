@@ -1,9 +1,9 @@
 package com.anton.saburov.validator.register;
 
-import com.anton.saburov.domain.Child;
+import com.anton.saburov.domain.wedding.Child;
 import com.anton.saburov.domain.CityRegisterResponse;
-import com.anton.saburov.domain.Person;
-import com.anton.saburov.domain.other.Adult;
+import com.anton.saburov.domain.wedding.Person;
+import com.anton.saburov.domain.wedding.Adult;
 import com.anton.saburov.exception.CityRegisterException;
 import com.anton.saburov.exception.TransportException;
 
