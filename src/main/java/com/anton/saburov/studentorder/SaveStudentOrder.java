@@ -1,6 +1,7 @@
 package com.anton.saburov.studentorder;
 
 import com.anton.saburov.dao.DictionaryDaoImpl;
+import com.anton.saburov.domain.CountryArea;
 import com.anton.saburov.domain.RegisterOffice;
 import com.anton.saburov.domain.wedding.*;
 import com.anton.saburov.exception.DaoException;
@@ -12,6 +13,7 @@ import java.util.List;
 public class SaveStudentOrder {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, DaoException {
         Class.forName("org.postgresql.Driver");
+/*
         List<Street> d = new DictionaryDaoImpl().findStreets("про");
         for (Street s : d) {
             System.out.println(s.getStreetName());
@@ -25,6 +27,32 @@ public class SaveStudentOrder {
         List<RegisterOffice> ro = new DictionaryDaoImpl().findRegisterOffices("010010000000");
         for (RegisterOffice r : ro) {
             System.out.println(r.getOfficeName());
+        }
+*/
+
+        List<CountryArea> ca1 = new DictionaryDaoImpl().findAreas("");
+        for (CountryArea c : ca1) {
+            System.out.println(c.getAreaId() + ":" + c.getAreaName());
+        }
+        System.out.println("--->");
+
+        List<CountryArea> ca2 = new DictionaryDaoImpl().findAreas("020000000000");
+        for (CountryArea c : ca2) {
+            System.out.println(c.getAreaId() + ":" + c.getAreaName());
+        }
+
+        System.out.println("--->");
+
+        List<CountryArea> ca3 = new DictionaryDaoImpl().findAreas("020010000000");
+        for (CountryArea c : ca3) {
+            System.out.println(c.getAreaId() + ":" + c.getAreaName());
+        }
+
+        System.out.println("--->");
+
+        List<CountryArea> ca4 = new DictionaryDaoImpl().findAreas("020010010000");
+        for (CountryArea c : ca4) {
+            System.out.println(c.getAreaId() + ":" + c.getAreaName());
         }
 
 
