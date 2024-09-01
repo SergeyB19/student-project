@@ -1,14 +1,13 @@
 package com.anton.saburov.studentorder;
 
-import com.anton.saburov.dao.DictionaryDaoImpl;
-import com.anton.saburov.domain.CountryArea;
+import com.anton.saburov.dao.StudentOrderDaoImpl;
+import com.anton.saburov.dao.StudentOrderDao;
 import com.anton.saburov.domain.RegisterOffice;
 import com.anton.saburov.domain.wedding.*;
 import com.anton.saburov.exception.DaoException;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.List;
 
 public class SaveStudentOrder {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, DaoException {
@@ -30,7 +29,7 @@ public class SaveStudentOrder {
         }
 */
 
-        List<CountryArea> ca1 = new DictionaryDaoImpl().findAreas("");
+/*        List<CountryArea> ca1 = new DictionaryDaoImpl().findAreas("");
         for (CountryArea c : ca1) {
             System.out.println(c.getAreaId() + ":" + c.getAreaName());
         }
@@ -53,7 +52,11 @@ public class SaveStudentOrder {
         List<CountryArea> ca4 = new DictionaryDaoImpl().findAreas("020010010000");
         for (CountryArea c : ca4) {
             System.out.println(c.getAreaId() + ":" + c.getAreaName());
-        }
+        }*/
+        StudentOrder s = buildStudentOrder(10);
+        StudentOrderDao dao = new StudentOrderDaoImpl();
+        Long id = dao.saveStudentOrder(s);
+        System.out.println(id);
 
 
 //        StudentOrder so = new StudentOrder();
