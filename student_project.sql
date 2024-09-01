@@ -1,9 +1,9 @@
-drop table if exists jc_student_child;
-drop table if exists jc_student_order;
-drop table if exists jc_passport_office;
-drop table if exists jc_register_office;
-drop table if exists jc_country_struct;
-drop table if exists jc_street;
+drop table if exists jc_student_child cascade;
+drop table if exists jc_student_order cascade;
+drop table if exists jc_passport_office cascade;
+drop table if exists jc_register_office cascade;
+drop table if exists jc_country_struct cascade;
+drop table if exists jc_street cascade;
 
 
 
@@ -44,6 +44,8 @@ create table jc_register_office
 create table jc_student_order
 (
     student_order_id     SERIAL,
+    student_order_status int not null,
+    student_order_date timestamp not null,
     h_sur_name           varchar(100) not null,
     h_given_name         varchar(100) not null,
     h_patronymic         varchar(100) not null,
