@@ -3,6 +3,7 @@ package com.anton.saburov.studentorder;
 import com.anton.saburov.dao.StudentOrderDaoImpl;
 import com.anton.saburov.dao.StudentOrderDao;
 import com.anton.saburov.domain.RegisterOffice;
+import com.anton.saburov.domain.University;
 import com.anton.saburov.domain.wedding.*;
 import com.anton.saburov.exception.DaoException;
 
@@ -93,6 +94,8 @@ public class SaveStudentOrder {
         husband.setIssueDepartment(po1);
         husband.setStudentId("" + (100_000 + id));
         husband.setAddress(address);
+        husband.setUniversity(new University(2L, ""));
+        husband.setStudentId("HH12345");
 
         Adult wife = new Adult("Петрова", "Вероника", "Алексеевна", LocalDate.of(1998, 3, 12));
         wife.setPassportSeria("" + (2000 + id));
@@ -102,6 +105,8 @@ public class SaveStudentOrder {
         wife.setIssueDepartment(po2);
         wife.setStudentId("" + (200_000 + id));
         wife.setAddress(address);
+        wife.setUniversity(new University(1L, ""));
+        wife.setStudentId("WW12345");
 
         Child child1 = new Child("Петрова", "Ирина", "Викторовна", LocalDate.of(2018, 6, 29));
         child1.setCertificateNumber("" + (300_000 + id));
