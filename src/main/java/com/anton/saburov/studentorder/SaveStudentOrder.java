@@ -9,6 +9,7 @@ import com.anton.saburov.exception.DaoException;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.List;
 
 public class SaveStudentOrder {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, DaoException {
@@ -58,6 +59,11 @@ public class SaveStudentOrder {
         StudentOrderDao dao = new StudentOrderDaoImpl();
         Long id = dao.saveStudentOrder(s);
         System.out.println(id);
+
+        List<StudentOrder> soList = dao.getStudentOrders();
+        for (StudentOrder so : soList) {
+            System.out.println(so.getStudentOrderId());
+        }
 
 
 //        StudentOrder so = new StudentOrder();
