@@ -39,9 +39,16 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);";
 
     public static final String SELECT_ORDERS =
-            "select so.*, ro.r_office_area_id,ro.r_office_name from jc_student_order as so" +
+            "select so.*, ro.r_office_area_id,ro.r_office_name," +
+                    "po_h.p_office_area_id as h_p_office_area_id," +
+                    "po_h.p_office_name as h_p_office_name," +
+                    "po_w.p_office_area_id as w_p_office_area_id," +
+                    "po_w.p_office_name as w_p_office_name" +
+                    "from jc_student_order as so" +
                     "inner join jc_register_office as ro on ro.r_office_id = so.register_office_id" +
-                    "where student_order_status = 0 order by student_order_date";
+                    "inner join jc_passport_office as po_h ON po_h.p_office_id = so.h_passport_office_id" +
+                    "inner join jc_passport_office as po_w ON po_w.p_office_id = so.w_passport_office_id" +
+                    "where student_order_status = 0 order by student_order_date;";
 
     //TODO refactoring - make one method
     private Connection getConnection() throws SQLException {
@@ -184,7 +191,13 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
         adult.setPassportSeria(rs.getString(pref + "passport_seria"));
         adult.setPassportNumber(rs.getString(pref + "passport_number"));
         adult.setIssueDate(rs.getDate(pref + "passport_date").toLocalDate());
-        PassportOffice po = new PassportOffice(rs.getLong(pref + "passport_office_id"), "", "");
+
+
+        Long poId = rs.getLong(pref + "passport_office_id");
+        String poArea = rs.getString(pref + "p_office_area_id");
+        String poName = rs.getString(pref + "p_office_name");
+
+        PassportOffice po = new PassportOffice(poId,poArea,poName);
         adult.setIssueDepartment(po);
         Address adr = new Address();
         Street st = new Street(rs.getLong(pref + "street_code"), "");
