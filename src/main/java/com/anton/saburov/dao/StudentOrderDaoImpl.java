@@ -51,7 +51,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                     "inner join jc_register_office as ro on ro.r_office_id = so.register_office_id" +
                     "inner join jc_passport_office as po_h ON po_h.p_office_id = so.h_passport_office_id" +
                     "inner join jc_passport_office as po_w ON po_w.p_office_id = so.w_passport_office_id" +
-                    "where student_order_status = ? order by student_order_date;";
+                    "where student_order_status = ? order by student_order_date LIMIT ?;";
 
     public static final String SELECT_CHILD = "select soc.*, ro.r_office_area_id, ro.r_office_name" +
             "from js_student_child as soc" +
@@ -72,15 +72,14 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                     "inner join jc_passport_office as po_w ON po_w.p_office_id = so.w_passport_office_id" +
                     "inner join js_student_child as soc ON soc.student_order_id = so.student_order_id" +
                     "inner join jc_register_office as ro_c  ON ro_c.r_office_id = soc.c_register_office_id" +
-                    "where student_order_status = ? order by student_order_date;";
+                    "where student_order_status = ? order by so.student_order_id LIMIT ?";
 
     //TODO refactoring - make one method
     private Connection getConnection() throws SQLException {
         Connection con = DriverManager.getConnection(
                 Config.getProperty(Config.DB_URL),
                 Config.getProperty(Config.DB_LOGIN),
-                Config.getProperty(Config.DB_PASSWORD)
-        );
+                Config.getProperty(Config.DB_PASSWORD));
         return con;
     }
 
@@ -191,7 +190,10 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
             Map<Long, StudentOrder> maps = new HashMap<>();
 
             stmt.setInt(1, StudentOrderStatus.START.ordinal());
+            int limit = Integer.parseInt(Config.getProperty(Config.DB_LIMIT));
+            stmt.setInt(2, limit);
             ResultSet rs = stmt.executeQuery();
+            int counter = 0;
             while (rs.next()) {
                 Long soId = rs.getLong("student_order_id");
                 if (!maps.containsKey(soId)) {
@@ -202,8 +204,11 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
                 }
                 StudentOrder so = maps.get(soId);
                 so.addChild(fillChild(rs));
+                counter++;
             }
-
+            if (counter >= limit) {
+                result.remove(result.size() - 1);
+            }
             rs.close();
         } catch (SQLException ex) {
             throw new DaoException(ex);
@@ -212,13 +217,13 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
     }
 
 
-
     private List<StudentOrder> getStudentOrdersTwoSelect() throws DaoException {
         List<StudentOrder> result = new LinkedList<>();
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(SELECT_ORDERS)) {
 
             stmt.setInt(1, StudentOrderStatus.START.ordinal());
+
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 StudentOrder so = new StudentOrder();

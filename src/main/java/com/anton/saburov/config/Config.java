@@ -7,6 +7,7 @@ public class Config {
     public static final String DB_URL = "db.url";
     public static final String DB_LOGIN = "db.login";
     public static final String DB_PASSWORD = "db.password";
+    public static final String DB_LIMIT = "db.limit";
 
     private static Properties properties = new Properties();
 
@@ -18,7 +19,13 @@ public class Config {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
-        /*    try(InputStream is = Config.class.getClassLoader()
+          /*  try (InputStream is = Config.class.getClassLoader().getResourceAsStream("dao.properties")) {
+                properties.load(is);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                throw new RuntimeException(ex);
+            }*/
+       /*     try(InputStream is = Config.class.getClassLoader()
                     .getResourceAsStream("dao.properties")) {
 
                 properties.load(is);
