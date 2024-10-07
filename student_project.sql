@@ -118,7 +118,11 @@ create table js_student_child
 );
 
 
-create index idx_student_order_status ON jc_student_order(student_order_status)
+create index idx_student_order_status ON jc_student_order(student_order_status);
+
+create index idx_student_order_id ON js_student_child(student_order_id);
+
+
 
 
 
